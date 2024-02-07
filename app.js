@@ -5,6 +5,7 @@ form.addEventListener('submit',(e)=>{
     const firstname = document.querySelector('.firstName');
     const lastname = document.querySelector('.lastName');
     const emailId = document.querySelector('.email');
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const password = document.querySelector('.password');
     
     if(firstname.value === ''){
@@ -28,6 +29,10 @@ form.addEventListener('submit',(e)=>{
         document.querySelector('.emailError').style.display = 'block';
         document.querySelector('.error-emailError').style.display = 'block';
         document.querySelector('.email').style.borderColor = ' hsl(0, 100%, 74%)';
+    }else if(!emailId.value.match(mailFormat)){
+        document.querySelector('.emailError').style.display = 'block';
+        document.querySelector('.error-emailError').style.display = 'block';
+        document.querySelector('.email').style.borderColor = ' hsl(0, 100%, 74%)';
     }else{
         document.querySelector('.emailError').style.display = 'none';
         document.querySelector('.error-emailError').style.display = 'none';
@@ -41,10 +46,4 @@ form.addEventListener('submit',(e)=>{
         document.querySelector('.error-passwordError').style.display = 'none';
     }
 
-    if(firstname.value !== '' && lastname.value !== '' && emailId.value !== '' && password.value !== ''){
-        alert("All input fields are filled");
-        document.querySelectorAll('input').forEach(input=>{
-            input.style.borderColor = 'hsl(154, 59%, 51%)';
-        });
-    }
 });
